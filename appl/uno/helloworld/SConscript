@@ -1,0 +1,29 @@
+import os
+
+def build_program(env):
+    return env.Program(
+        target='helloworld',
+        source=[
+            env.File("main.c"),
+         ],
+        )
+
+
+Import('env')
+abs_path = r"C:\Program Files (x86)\Arduino\hardware\tools\avr"
+gccavrdir = os.environ['GCCAVR'] = abs_path
+
+cc = env.Clone(tools=['gccavr'],
+               GCCAVRDIR = gccavrdir,
+               LINKFLAGS='-Wl,--gc-sections -lm')
+cc.Prepend(CCFLAGS='-mmcu=atmega328p '
+                   '-Os -fdata-sections -ffunction-sections -flto -fuse-linker-plugin')
+cc.Prepend(CPPDEFINES={'F_CPU': '16000000L',
+                        'ARDUINO': 10819,
+                        'ARDUINO_AVR_UNO':1,
+                        'ARDUINO_ARCH_MEGAAVR': 1,
+                        'ARDUINO_ARCH_AVR':1,
+                        })
+app = build_program(cc)
+hex = cc.Rom(app)
+Alias('build', hex )

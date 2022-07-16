@@ -1,0 +1,30 @@
+import os
+
+def build_program(env):
+    return env.Program(
+        target='helloworld',
+        source=[
+            env.File("main.c"),
+         ],
+        )
+
+
+Import('env')
+rel_path = r"AppData\Local\Arduino15\packages\arduino\tools\avr-gcc\7.3.0-atmel3.6.1-arduino5"
+gccavrdir = os.environ['GCCAVR'] = os.path.join(os.path.expanduser('~'),rel_path)
+
+cc = env.Clone(tools=['gccavr'],
+               GCCAVRDIR = gccavrdir,
+               LINKFLAGS=' -Wl,--gc-sections -Wl,--section-start=.text=0x0 -lm')
+cc.Prepend(CCFLAGS='-mmcu=atmega4809 '
+                   '-Os -fdata-sections -ffunction-sections -flto -fuse-linker-plugin')
+cc.Prepend(CPPDEFINES={'F_CPU': '16000000L',
+                        'ARDUINO': 10819,
+                        'ARDUINO_AVR_NANO_EVERY':1,
+                        'ARDUINO_ARCH_MEGAAVR': 1,
+                        'MILLIS_USE_TIMERB3':1,
+                        'NO_EXTERNAL_I2C_PULLUP': 1,
+                        })
+app = build_program(cc)
+hex = cc.Rom(app)
+Alias('build', hex )
