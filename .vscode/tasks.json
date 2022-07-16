@@ -1,0 +1,53 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "scons -j1",
+            "type": "shell",
+            "command": "c:\\util\\set-dev.bat && scons -j1",
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "scons -j4",
+            "type": "shell",
+            "command": "c:\\util\\set-dev.bat && scons -j4",
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "scons clean",
+            "type": "shell",
+            "command": "c:\\util\\set-dev.bat && scons -c",
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "protocols",
+            "type": "shell",
+            "command": "c:\\util\\set-dev.bat && scons protocols",
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "flash nano every - helloworld",
+            "type": "shell",
+            "command": "${config:programmerPathAVR}bin/avrdude -C${config:programmerPathAVR}etc/avrdude.conf -v -patmega4809 -cjtag2updi -PCOM8 -b115200 -e -D -Uflash:w:${workspaceFolder}\\build\\appl\\uno\\helloworld\\helloworld.hex:i -Ufuse2:w:0x01:m -Ufuse5:w:0xC9:m -Ufuse8:w:0x00:m {upload.extra_files}",
+            "problemMatcher": [],                    //avrdude -C                           etc/avrdude.conf -v -patmega4809 -cjtag2updi -PCOM8 -b115200 -e -D -Uflash:w:C:\Users\fabbrini\AppData\Local\Temp\arduino_build_706323/led.ino.hex:i -Ufuse2:w:0x01:m -Ufuse5:w:0xC9:m -Ufuse8:w:0x00:m {upload.extra_files}
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "flash uno - helloworld",
+            "type": "shell",
+            "command": "${config:programmerPathAVR}bin/avrdude -C${config:programmerPathAVR}etc/avrdude.conf -v -patmega328p -carduino -PCOM14 -b115200 -D -Uflash:w:${workspaceFolder}\\build\\appl\\uno\\helloworld\\helloworld.hex:i",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
