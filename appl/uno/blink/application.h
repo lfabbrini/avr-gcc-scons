@@ -8,10 +8,6 @@
 extern "C" {
 #endif
 
-//WHY????????????'
-void init() __attribute__((weak));
-
-
 void loop();
 void setup();
 

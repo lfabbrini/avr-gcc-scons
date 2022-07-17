@@ -3,13 +3,9 @@
 
 """SCons Tool for generic GCC.
 """
-def modify_srcs(target, source, env):
-    source = []
-    return target, source
-
-
 import SCons
 def generate(env):
+    print('GCC GENERATE')
     env['BUILDERS']['Object'] = SCons.Builder.Builder(
         action={
             '.c': SCons.Action.Action("$CCCOM", "$CCCOMSTR"),
@@ -39,13 +35,16 @@ def generate(env):
         target_scanner=SCons.Tool.ProgramScanner)
     env['CC'] = '${GCCPREFIX}gcc${GCCSUFFIX}'
     env['CFLAGS'] = SCons.Util.CLVar('')
-    env['CCFLAGS'] = SCons.Util.CLVar('-std=gnu11 -pedantic -Wall -Wextra -Wno-unused-parameter -Werror')
     env['CCCOM'] = ['$CC $CCFLAGS $CFLAGS $_CPPDEFFLAGS $_CPPINCFLAGS -o $TARGET -c $SOURCE']
     env['CPPDEFPREFIX'] = '-D'
     env['CPPDEFSUFFIX'] = ''
     env['INCPREFIX'] = '-I'
     env['INCSUFFIX'] = ''
     env['OBJSUFFIX'] = '.o'
+
+    env['CXX'] = '${GPPPREFIX}g++${GPPSUFFIX}'
+    env['CXXCOM']     = '$CXX -o $TARGET -c $CXXFLAGS $_CPPDEFFLAGS $_CPPINCFLAGS $SOURCES'
+
 
     env['AS'] = '${GCCPREFIX}gcc${GCCSUFFIX}'
     env['ASCOM'] = '$AS $CCFLAGS $ASFLAGS -o $TARGET -c $SOURCES'

@@ -15,6 +15,7 @@ def build_program(env):
             # env.RanLibrary(env.ArduinoLibrary()),
             env.ArduinoLibrary(),
             env.ArduinoCLibrary(),
+            env.ArduinoLibrary(),
          ]
         )
 
@@ -25,13 +26,13 @@ VariantDir('lib', '#lib', duplicate=0)
 abs_path = r"C:\Program Files (x86)\Arduino\hardware\tools\avr"
 gccavrdir = os.environ['GCCAVR'] = abs_path
 
-cc = env.Clone(tools=['gcc','gccavr','g++avr'],
+cc = env.Clone(tools=['gcc','gccavr'],
                GCCAVRDIR = gccavrdir,
-               LINKFLAGS='-Wl,-gc-sections -fuse-linker-plugin -lm')
+               LINKFLAGS='-Wl,-gc-sections -lm')#-fuse-linker-plugin
 cc.Prepend(CXXFLAGS='-mmcu=atmega328p '
-           '-Os -fdata-sections -ffunction-sections -flto')
+           '-Os -fdata-sections -ffunction-sections') #-flto
 cc.Prepend(CCFLAGS='-mmcu=atmega328p '
-                   '-Os -fdata-sections -ffunction-sections -flto')
+                   '-Os -fdata-sections -ffunction-sections') #-flto
 cc.Prepend(CPPDEFINES={'F_CPU': '16000000L',
                         'ARDUINO': 10819,
                         'ARDUINO_AVR_UNO':1,

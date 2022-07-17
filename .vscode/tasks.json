@@ -49,5 +49,15 @@
                 "isDefault": true
             }
         }
+        {
+            "label": "flash uno - blink",
+            "type": "shell",
+            "command": "${config:programmerPathAVR}bin/avrdude -C${config:programmerPathAVR}etc/avrdude.conf -v -patmega328p -carduino -PCOM14 -b115200 -D -Uflash:w:${workspaceFolder}\\build\\appl\\uno\\blink\\blink:i",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
     ]
 }
