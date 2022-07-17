@@ -9,7 +9,7 @@ env = Environment(
     )
 
 Export('env') # Export adds one or more variables to a global list of variables that are available for import by other SConscript files.
-VariantDir('build', '.', duplicate=0) # VariantDir function to establish that target files should be built in a separate directory from the source files. You can specify the same duplicate=0 argument n which case SCons will disable duplication of the source files (otherwise SCons copy all files on build/)
+VariantDir('build', Dir('.'), duplicate=0) # VariantDir function to establish that target files should be built in a separate directory from the source files. You can specify the same duplicate=0 argument n which case SCons will disable duplication of the source files (otherwise SCons copy all files on build/)
 # CacheDir(os.environ.get('SCONS_CACHEDIR'))
 
 SConscript(dirs=[

@@ -1,8 +1,8 @@
 import os
 
 def build_program(env):
-    env.IncludeLibrary('arduino')
     # print(env.Dump())
+    env.IncludeLibrary('arduino',variant_dir='#build')
     env.Prepend(CPPPATH=['#appl/uno/blink','#lib/arduino/core'])
     return env.Program(
         target='blink',
@@ -21,8 +21,7 @@ def build_program(env):
 
 
 Import('env')
-VariantDir('lib', '#lib', duplicate=0)
-
+# VariantDir('lib', Dir('#lib'), duplicate=0)
 abs_path = r"C:\Program Files (x86)\Arduino\hardware\tools\avr"
 gccavrdir = os.environ['GCCAVR'] = abs_path
 

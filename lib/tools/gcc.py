@@ -69,7 +69,7 @@ def generate(env):
 
     env['RANLIB'] = '${GPPPREFIX}ranlib${GPPSUFFIX} $TARGET'
 
-    env['BUILDERS']['Rom'] = env.Builder(
+    env['BUILDERS']['Rom'] = SCons.Builder.Builder(
         action=SCons.Action.Action("$ROMCOM"),
         suffix='$ROMSUFFIX',
         single_source=1)
