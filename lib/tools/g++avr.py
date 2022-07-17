@@ -4,9 +4,11 @@
 
 
 import os
-import gcc
+import SCons
 
 def generate(env):
+    import SCons.Tool.cxx
+
     env.PrependENVPath('PATH', env.subst(os.path.join('$GCCAVRDIR', 'bin')))
     #use Unique here because Scons enter here 2 times
     env.PrependUnique(CPPPATH=[
@@ -14,15 +16,15 @@ def generate(env):
         os.path.join('$GCCAVRDIR','lib','gcc','avr','7.3.0','include-fixed'),
         os.path.join('$GCCAVRDIR','avr','include')
     ])
-    env['MAPFILE'] = True
-    env['GCCPREFIX'] = 'avr-'
-    env['PROGSUFFIX'] = '.elf'
-    env['ROMSUFFIX'] = '.hex'
-    env['ROMCOM'] = 'avr-objcopy -O ihex -R .eeprom $SOURCE $TARGET'
-    env['ROMFORMAT'] = 'INHX'
+    # SCons.Tool.cxx.generate(env)
+    env['CXX'] = '${GPPPREFIX}g++${GPPSUFFIX}'
+    env['CXXFLAGS']   = SCons.Util.CLVar('-w -std=gnu++11 -fpermissive -fno-exceptions -fno-threadsafe-statics -Wno-error=narrowing')
+    env['GPPPREFIX'] = 'avr-'
+    env['CXXFILESUFFIX'] = '.cpp'
+    env['CXXCOM']     = '$CXX -o $TARGET -c $CXXFLAGS $_CPPDEFFLAGS $_CPPINCFLAGS $SOURCES'
 
-    env['AR'] = '${GCCPREFIX}ar${GCCSUFFIX}'
-    env['ASFLAGS'] = '-x assembler-with-cpp'
+
+
 
 def exists(env):
     return None

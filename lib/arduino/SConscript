@@ -1,0 +1,14 @@
+
+
+
+Import('env')
+
+_SOURCES_CORE = env.Glob("core/*.S") + \
+                env.Glob("core/*.c",exclude='core/wiring_pulse.c') + \
+                env.Object('wiring_pulse_c','core/wiring_pulse.c')
+_SOURCES_CORE_CPP = env.Glob("core/*.cpp")
+env.Prepend(CPPPATH=[env.Dir('core').srcnode(),
+                     env.Dir('variants/standard').srcnode()])
+env.ArduinoCore = lambda: _SOURCES_CORE
+env.ArduinoLibrary = lambda: env.Library('arduino_core',_SOURCES_CORE_CPP)
+env.ArduinoCLibrary = lambda: env.Library('arduino_core_c',_SOURCES_CORE)

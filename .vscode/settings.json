@@ -1,11 +1,15 @@
 {
+    "editor.bracketPairColorization.enabled": false,
     "programmerPathAVR": "${userHome}\\AppData\\Local\\Arduino15\\packages\\arduino\\tools\\avrdude\\6.3.0-arduino17/",
+
     "files.associations": {
         "utils.h": "c",
         "delay.h": "c",
         "io.h": "c",
         "io43u32x.h": "c",
         "iom328p.h": "c",
-        "portpins.h": "c"
+        "portpins.h": "c",
+        "sfr_defs.h": "c",
+        "common.h": "c"
     }
 }

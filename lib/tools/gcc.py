@@ -3,22 +3,27 @@
 
 """SCons Tool for generic GCC.
 """
+def modify_srcs(target, source, env):
+    source = []
+    return target, source
 
 
 import SCons
-
-
 def generate(env):
     env['BUILDERS']['Object'] = SCons.Builder.Builder(
         action={
             '.c': SCons.Action.Action("$CCCOM", "$CCCOMSTR"),
+            '.cpp': SCons.Action.Action("$CXXCOM", "$CXXCOMMSTR"),
+            '.S': SCons.Action.Action("$ASCOM", "$ASCOMSTR"),
         },
         emitter={},
         prefix='$OBJPREFIX',
         suffix='$OBJSUFFIX',
+        source_scanner=SCons.Tool.SourceFileScanner,
         single_source=1)
     env['BUILDERS']['Library'] = SCons.Builder.Builder(
-        action=SCons.Action.Action("$ARCOM", "$ARCOMSTR"),
+        action= [SCons.Action.Action("$ARCOM", "$ARCOMSTR"),
+                SCons.Action.Action("$RANLIB", "$RANLIBSTR")],
         emitter='$LIBEMITTER',
         prefix='$LIBPREFIX',
         suffix='$LIBSUFFIX',
@@ -59,9 +64,11 @@ def generate(env):
 
     env['AR'] = '${GCCPREFIX}ar${GCCSUFFIX}'
     env['ARFLAGS'] = SCons.Util.CLVar('')
-    env['ARCOM'] = '$AR $ARFLAGS rc $TARGET $SOURCES'
+    env['ARCOM'] = '$AR $ARFLAGS rcs $TARGET $SOURCES'
     env['LIBPREFIX'] = 'lib'
     env['LIBSUFFIX'] = '.a'
+
+    env['RANLIB'] = '${GPPPREFIX}ranlib${GPPSUFFIX} $TARGET'
 
     env['BUILDERS']['Rom'] = env.Builder(
         action=SCons.Action.Action("$ROMCOM"),

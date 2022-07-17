@@ -1,0 +1,43 @@
+import os
+
+def build_program(env):
+    env.IncludeLibrary('arduino')
+    # print(env.Dump())
+    env.Prepend(CPPPATH=['#appl/uno/blink','#lib/arduino/core'])
+    return env.Program(
+        target='blink',
+        source=[
+            env.Glob("*.c"),
+            env.Glob("*.cpp"),
+            # env.ArduinoCore()
+         ],
+         LIBS=[
+            # env.RanLibrary(env.ArduinoLibrary()),
+            env.ArduinoLibrary(),
+            env.ArduinoCLibrary(),
+         ]
+        )
+
+
+Import('env')
+VariantDir('lib', '#lib', duplicate=0)
+
+abs_path = r"C:\Program Files (x86)\Arduino\hardware\tools\avr"
+gccavrdir = os.environ['GCCAVR'] = abs_path
+
+cc = env.Clone(tools=['gcc','gccavr','g++avr'],
+               GCCAVRDIR = gccavrdir,
+               LINKFLAGS='-Wl,-gc-sections -fuse-linker-plugin -lm')
+cc.Prepend(CXXFLAGS='-mmcu=atmega328p '
+           '-Os -fdata-sections -ffunction-sections -flto')
+cc.Prepend(CCFLAGS='-mmcu=atmega328p '
+                   '-Os -fdata-sections -ffunction-sections -flto')
+cc.Prepend(CPPDEFINES={'F_CPU': '16000000L',
+                        'ARDUINO': 10819,
+                        'ARDUINO_AVR_UNO':1,
+                        'ARDUINO_ARCH_MEGAAVR': 1,
+                        'ARDUINO_ARCH_AVR':1,
+                        })
+app = build_program(cc)
+hex = cc.Rom(app)
+Alias('build', hex )
