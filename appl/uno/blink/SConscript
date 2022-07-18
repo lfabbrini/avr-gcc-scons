@@ -24,11 +24,11 @@ gccavrdir = os.environ['GCCAVR'] = abs_path
 
 cc = env.Clone(tools=['gcc','gccavr'],
                GCCAVRDIR = gccavrdir,
-               LINKFLAGS='-Wl,-gc-sections -lm')#-fuse-linker-plugin
+               LINKFLAGS='-Wl,-gc-sections -fuse-linker-plugin -lm')
 cc.Prepend(CXXFLAGS='-mmcu=atmega328p '
-           '-Os -fdata-sections -ffunction-sections') #-flto
+           '-Os -fdata-sections -ffunction-sections -flto')
 cc.Prepend(CCFLAGS='-mmcu=atmega328p '
-                   '-Os -fdata-sections -ffunction-sections') #-flto
+                   '-Os -fdata-sections -ffunction-sections -flto')
 cc.Prepend(CPPDEFINES={'F_CPU': '16000000L',
                         'ARDUINO': 10819,
                         'ARDUINO_AVR_UNO':1,

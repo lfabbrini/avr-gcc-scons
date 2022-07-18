@@ -1,7 +1,7 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
-#define MS_DELAY 250
+#define MS_DELAY 2500
 #define BUILTIN_LED_PORT PORTE
 #define BUILTIN_LED_PIN _BV(2)
 

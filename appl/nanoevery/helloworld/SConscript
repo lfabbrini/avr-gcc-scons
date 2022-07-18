@@ -15,7 +15,7 @@ gccavrdir = os.environ['GCCAVR'] = os.path.join(os.path.expanduser('~'),rel_path
 
 cc = env.Clone(tools=['gcc','gccavr'],
                GCCAVRDIR = gccavrdir,
-               LINKFLAGS=' -Wl,-gc-sections -Wl,-section-start=.text=0x0 -fuse-linker-plugin -lm')
+               LINKFLAGS=' -Wl,--gc-sections -Wl,--section-start=.text=0x0 -fuse-linker-plugin -lm')
 cc.Prepend(CCFLAGS='-mmcu=atmega4809 '
                    '-Os -fdata-sections -ffunction-sections -flto')
 cc.Prepend(CPPDEFINES={'F_CPU': '16000000L',

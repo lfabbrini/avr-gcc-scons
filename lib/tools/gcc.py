@@ -52,6 +52,8 @@ def generate(env):
     env['LINK'] = '${GCCPREFIX}gcc${GCCSUFFIX}'
     env['LINKFLAGS'] = SCons.Util.CLVar('')
     env['LINKERSCRIPT'] = SCons.Util.CLVar('')
+
+    env['MAPFILE'] = True
     env['_MAPFILE'] = ('MAPFILE' in env) and '-Xlinker -Map -Xlinker ${TARGET.base}.map' or ''
     env['_LINKFILE'] = '${LINKERSCRIPT and ("-T%s" % LINKERSCRIPT) or ""}'
     env['_LINKARGS'] = '$CCFLAGS $LINKFLAGS $_LINKFILE $_MAPFILE -o $TARGET $SOURCES $_LIBDIRFLAGS $_LIBFLAGS'
@@ -61,13 +63,13 @@ def generate(env):
     env['LIBLINKPREFIX'] = '-l'
     env['LIBLINKSUFFIX'] = ''
 
-    env['AR'] = '${GCCPREFIX}ar${GCCSUFFIX}'
+    env['AR'] = '${GCCPREFIX}gcc-ar${GCCSUFFIX}'
     env['ARFLAGS'] = SCons.Util.CLVar('')
     env['ARCOM'] = '$AR $ARFLAGS rcs $TARGET $SOURCES'
     env['LIBPREFIX'] = 'lib'
     env['LIBSUFFIX'] = '.a'
 
-    env['RANLIB'] = '${GPPPREFIX}ranlib${GPPSUFFIX} $TARGET'
+    env['RANLIB'] = '${GPPPREFIX}gcc-ranlib${GPPSUFFIX} $TARGET'
 
     env['BUILDERS']['Rom'] = SCons.Builder.Builder(
         action=SCons.Action.Action("$ROMCOM"),

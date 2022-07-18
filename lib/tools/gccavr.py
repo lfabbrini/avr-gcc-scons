@@ -17,7 +17,7 @@ def generate(env):
     ])
     env['CCFLAGS'] = SCons.Util.CLVar('-std=gnu11 -pedantic -Wall -Wextra -Wno-unused-parameter -Werror')
     env['GCCPREFIX'] = 'avr-'
-    env['MAPFILE'] = True
+
 
     env['PROGSUFFIX'] = '.elf'
     env['ROMSUFFIX'] = '.hex'
@@ -29,8 +29,10 @@ def generate(env):
     env['CXXFILESUFFIX'] = '.cpp'
 
 
-    env['AR'] = '${GCCPREFIX}ar${GCCSUFFIX}'
+    env['AR'] = '${GCCPREFIX}gcc-ar${GCCSUFFIX}'
     env['ASFLAGS'] = '-x assembler-with-cpp'
+
+    env['RANLIB'] = '${GPPPREFIX}gcc-ranlib${GPPSUFFIX} $TARGET'
 
 def exists(env):
     return None
