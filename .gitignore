@@ -1,5 +1,5 @@
 build/
-dbg/
+dbg/**
 arduino*build.txt
 .sconsign.dblite
 #.vscode
