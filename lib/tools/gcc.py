@@ -4,6 +4,17 @@
 """SCons Tool for generic GCC.
 """
 import SCons
+
+def asm_emitter(target, source, env):
+    asm_suffix = env.subst("$ASMSUFFIX")
+
+
+    for s in source:
+        src = str(s)
+        if src.endswith(asm_suffix):
+            target = src[: -len(asm_suffix)]+'_S'
+    return target, source
+
 def generate(env):
     # print('GCC GENERATE')
     env['BUILDERS']['Object'] = SCons.Builder.Builder(
@@ -12,7 +23,7 @@ def generate(env):
             '.cpp': SCons.Action.Action("$CXXCOM", "$CXXCOMMSTR"),
             '.S': SCons.Action.Action("$ASCOM", "$ASCOMSTR"),
         },
-        emitter={},
+        emitter={'.S': asm_emitter},
         prefix='$OBJPREFIX',
         suffix='$OBJSUFFIX',
         source_scanner=SCons.Tool.SourceFileScanner,
@@ -47,7 +58,9 @@ def generate(env):
 
 
     env['AS'] = '${GCCPREFIX}gcc${GCCSUFFIX}'
+    env['ASMSUFFIX'] = '.S'
     env['ASCOM'] = '$AS $CCFLAGS $ASFLAGS -o $TARGET -c $SOURCES'
+
 
     env['LINK'] = '${GCCPREFIX}gcc${GCCSUFFIX}'
     env['LINKFLAGS'] = SCons.Util.CLVar('')

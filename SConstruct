@@ -14,6 +14,7 @@ VariantDir('build', Dir('.'), duplicate=0) # VariantDir function to establish th
 
 SConscript(dirs=[
     'build/appl/nanoevery/helloworld',
+    'build/appl/nanoevery/blink',
     'build/appl/uno/helloworld',
     'build/appl/uno/blink',
 ])

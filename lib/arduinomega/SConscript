@@ -1,0 +1,16 @@
+Import('env')
+
+_SOURCES_CORE = env.Glob("core/*.S") + \
+                env.Glob("core/*.c") + \
+                env.Glob("core/*.cpp")
+_SOURCES_CORE_API = env.Glob("core/api/*.S") + \
+                env.Glob("core/api/*.c") + \
+                env.Glob("core/api/*.cpp")
+_SOURCES_VARIANT = env.Glob("variants/nona4809/*.c")
+env.Prepend(CPPPATH=[env.Dir('.').srcnode(),
+                     env.Dir('core').srcnode(),
+                     env.Dir('core/api/deprecated').srcnode(),
+                     env.Dir('variants/nona4809').srcnode()])
+env.ArduinoMegaCore = lambda: _SOURCES_CORE + _SOURCES_CORE_API
+env.ArduinoMegaVariant = lambda: _SOURCES_VARIANT
+env.ArduinoMegaLibrary = lambda: env.Library('arduino_core',_SOURCES_CORE + _SOURCES_CORE_API)

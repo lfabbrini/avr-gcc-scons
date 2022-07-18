@@ -23,20 +23,29 @@
             "group": "build"
         },
         {
-            "label": "flash nano every - helloworld",
+            "label": "flash (nano every) - helloworld",
             "type": "shell",
-            "command": "${config:programmerPathAVR}bin/avrdude -C${config:programmerPathAVR}etc/avrdude.conf -v -v -v -patmega4809 -cjtag2updi -PCOM8 -b115200 -e -D -Uflash:w:${workspaceFolder}\\build\\appl\\uno\\helloworld\\helloworld.hex:i -Ufuse2:w:0x01:m -Ufuse5:w:0xC9:m -Ufuse8:w:0x00:m {upload.extra_files}",
-            // "command": "${config:programmerPathAVR6.4}avrdude -C${config:programmerPathAVR6.4}/avrdude.conf -v -v -v -patmega4809 -cjtag2slow -PCOM8 -b115200 -e -D -Uflash:w:${workspaceFolder}\\build\\appl\\uno\\helloworld\\helloworld.hex:i -Ufuse2:w:0x01:m -Ufuse5:w:0xC9:m -Ufuse8:w:0x00:m {upload.extra_files}",
-            "problemMatcher": [],                    //avrdude -C                           etc/avrdude.conf -v -patmega4809 -cjtag2updi -PCOM8 -b115200 -e -D -Uflash:w:C:\Users\fabbrini\AppData\Local\Temp\arduino_build_706323/led.ino.hex:i -Ufuse2:w:0x01:m -Ufuse5:w:0xC9:m -Ufuse8:w:0x00:m {upload.extra_files}
+            "command": "mode COM8 baud=12 dtr=on > nul && mode COM8 baud=12 dtr=off > nul && ${config:programmerPathAVR}bin/avrdude -C${config:programmerPathAVR}etc/avrdude.conf -v -patmega4809 -cjtag2updi -PCOM8 -b115200 -e -D -Uflash:w:${workspaceFolder}\\build\\appl\\nanoevery\\helloworld\\helloworld.hex:i -Ufuse2:w:0x01:m -Ufuse5:w:0xC9:m -Ufuse8:w:0x00:m {upload.extra_files}",
+            "problemMatcher": [],
             "group": {
                 "kind": "build",
                 "isDefault": true
             }
         },
         {
-            "label": "flash uno - helloworld",
+            "label": "flash (nano every) - blink",
             "type": "shell",
-            "command": "${config:programmerPathAVR}bin/avrdude -C${config:programmerPathAVR}etc/avrdude.conf -v -v -v -patmega328p -carduino -PCOM14 -b115200 -D -Uflash:w:${workspaceFolder}\\build\\appl\\uno\\helloworld\\helloworld.hex:i",
+            "command": "mode COM8 baud=12 dtr=on > nul && mode COM8 baud=12 dtr=off > nul && ${config:programmerPathAVR}bin/avrdude -C${config:programmerPathAVR}etc/avrdude.conf -v -patmega4809 -cjtag2updi -PCOM8 -b115200 -e -D -Uflash:w:${workspaceFolder}\\build\\appl\\nanoevery\\blink\\blink.hex:i -Ufuse2:w:0x01:m -Ufuse5:w:0xC9:m -Ufuse8:w:0x00:m {upload.extra_files}",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "flash (uno) - helloworld",
+            "type": "shell",
+            "command": "${config:programmerPathAVR}bin/avrdude -C${config:programmerPathAVR}etc/avrdude.conf -v -patmega328p -carduino -PCOM14 -b115200 -D -Uflash:w:${workspaceFolder}\\build\\appl\\uno\\helloworld\\helloworld.hex:i",
             "problemMatcher": [],
             "group": {
                 "kind": "build",
@@ -44,7 +53,7 @@
             }
         }
         {
-            "label": "flash uno - blink",
+            "label": "flash (uno) - blink",
             "type": "shell",
             "command": "${config:programmerPathAVR}bin/avrdude -C${config:programmerPathAVR}etc/avrdude.conf -v -v -v -patmega328p -carduino -PCOM14 -b115200 -D -Uflash:w:${workspaceFolder}\\build\\appl\\uno\\blink\\blink.hex:i",
             "problemMatcher": [],

@@ -10,6 +10,8 @@
         "iom328p.h": "c",
         "portpins.h": "c",
         "sfr_defs.h": "c",
-        "common.h": "c"
+        "common.h": "c",
+        "arduino.h": "c",
+        "iom4809.h": "c"
     }
 }

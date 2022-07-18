@@ -3,7 +3,7 @@ import os
 def build_program(env):
     # print(env.Dump())
     env.IncludeLibrary('arduino',variant_dir='#build')
-    env.Prepend(CPPPATH=['#appl/uno/blink','#lib/arduino/core'])
+    env.Prepend(CPPPATH=['#appl/uno/blink'])
     return env.Program(
         target='blink',
         source=[
@@ -11,8 +11,6 @@ def build_program(env):
             env.Glob("*.cpp"),
          ],
          LIBS=[
-            env.ArduinoLibrary(),
-            env.ArduinoCLibrary(),
             env.ArduinoLibrary(),
          ]
         )
