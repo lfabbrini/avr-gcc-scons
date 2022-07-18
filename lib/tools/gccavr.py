@@ -7,7 +7,7 @@ import os
 import gcc
 import SCons
 def generate(env):
-    print('AVR GENERATE')
+    # print('AVR GENERATE')
     env.PrependENVPath('PATH', env.subst(os.path.join('$GCCAVRDIR', 'bin')))
     #use Unique here because Scons enter here 2 times
     env.PrependUnique(CPPPATH=[

@@ -5,7 +5,7 @@
 """
 import SCons
 def generate(env):
-    print('GCC GENERATE')
+    # print('GCC GENERATE')
     env['BUILDERS']['Object'] = SCons.Builder.Builder(
         action={
             '.c': SCons.Action.Action("$CCCOM", "$CCCOMSTR"),

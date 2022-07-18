@@ -1,5 +1,7 @@
 build/
+dbg/
 arduino*build.txt
+.sconsign.dblite
 #.vscode
 
 # Prerequisites

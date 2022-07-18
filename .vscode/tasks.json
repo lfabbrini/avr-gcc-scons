@@ -23,13 +23,6 @@
             "group": "build"
         },
         {
-            "label": "protocols",
-            "type": "shell",
-            "command": "c:\\util\\set-dev.bat && scons protocols",
-            "problemMatcher": [],
-            "group": "build"
-        },
-        {
             "label": "flash nano every - helloworld",
             "type": "shell",
             "command": "${config:programmerPathAVR}bin/avrdude -C${config:programmerPathAVR}etc/avrdude.conf -v -patmega4809 -cjtag2updi -PCOM8 -b115200 -e -D -Uflash:w:${workspaceFolder}\\build\\appl\\uno\\helloworld\\helloworld.hex:i -Ufuse2:w:0x01:m -Ufuse5:w:0xC9:m -Ufuse8:w:0x00:m {upload.extra_files}",

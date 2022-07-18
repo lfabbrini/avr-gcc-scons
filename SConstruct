@@ -13,8 +13,8 @@ VariantDir('build', Dir('.'), duplicate=0) # VariantDir function to establish th
 # CacheDir(os.environ.get('SCONS_CACHEDIR'))
 
 SConscript(dirs=[
-    # 'build/appl/nanoevery/helloworld',
-    # 'build/appl/uno/helloworld',
+    'build/appl/nanoevery/helloworld',
+    'build/appl/uno/helloworld',
     'build/dbg/helloworld',
     'build/appl/uno/blink',
 ])

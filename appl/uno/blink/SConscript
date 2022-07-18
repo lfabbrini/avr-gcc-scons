@@ -9,10 +9,8 @@ def build_program(env):
         source=[
             env.Glob("*.c"),
             env.Glob("*.cpp"),
-            # env.ArduinoCore()
          ],
          LIBS=[
-            # env.RanLibrary(env.ArduinoLibrary()),
             env.ArduinoLibrary(),
             env.ArduinoCLibrary(),
             env.ArduinoLibrary(),
@@ -21,7 +19,6 @@ def build_program(env):
 
 
 Import('env')
-# VariantDir('lib', Dir('#lib'), duplicate=0)
 abs_path = r"C:\Program Files (x86)\Arduino\hardware\tools\avr"
 gccavrdir = os.environ['GCCAVR'] = abs_path
 

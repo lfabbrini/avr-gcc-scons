@@ -20,5 +20,5 @@ def IncludeLibrary(self, *dirs, **options):
         libpath = self['LIBROOT'].Dir(lib)
         if libpath not in self['_LIBINCLUDED']:
             self['_LIBINCLUDED'].add(self.Dir(libpath))
-            print(map(str,self['_LIBINCLUDED']))
+            # print(map(str,self['_LIBINCLUDED']))
             self.SConscript(dirs=[libpath], exports={ 'env': self, 'options': options })

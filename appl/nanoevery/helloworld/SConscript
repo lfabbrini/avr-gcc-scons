@@ -13,11 +13,11 @@ Import('env')
 rel_path = r"AppData\Local\Arduino15\packages\arduino\tools\avr-gcc\7.3.0-atmel3.6.1-arduino5"
 gccavrdir = os.environ['GCCAVR'] = os.path.join(os.path.expanduser('~'),rel_path)
 
-cc = env.Clone(tools=['gccavr'],
+cc = env.Clone(tools=['gcc','gccavr'],
                GCCAVRDIR = gccavrdir,
-               LINKFLAGS=' -Wl,--gc-sections -Wl,--section-start=.text=0x0 -lm')
+               LINKFLAGS=' -Wl,-gc-sections -Wl,-section-start=.text=0x0 -fuse-linker-plugin -lm')
 cc.Prepend(CCFLAGS='-mmcu=atmega4809 '
-                   '-Os -fdata-sections -ffunction-sections -flto -fuse-linker-plugin')
+                   '-Os -fdata-sections -ffunction-sections -flto')
 cc.Prepend(CPPDEFINES={'F_CPU': '16000000L',
                         'ARDUINO': 10819,
                         'ARDUINO_AVR_NANO_EVERY':1,
