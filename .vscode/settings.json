@@ -1,8 +1,9 @@
 {
     "editor.bracketPairColorization.enabled": false,
     "programmerPathAVR": "${userHome}\\AppData\\Local\\Arduino15\\packages\\arduino\\tools\\avrdude\\6.3.0-arduino17/",
-    "programmerPathAVR6.4": "C:\\Users\\fabbrini\\Desktop\\PROGRAM\\avrdude-6.4-mingw32\\",
+    "programmerPathAVR6.4": "${userHome}\\Desktop\\PROGRAM\\avrdude-6.4-mingw32\\",
     "pythonSuffix": "-py3",
+    "enviromentSettings": "c:\\util\\set-dev${config:pythonSuffix}.bat && ",
     "files.associations": {
         "utils.h": "c",
         "delay.h": "c",

@@ -4,21 +4,21 @@
         {
             "label": "scons -j1",
             "type": "shell",
-            "command": "c:\\util\\set-dev${config:pythonSuffix}.bat && scons -j1",
+            "command": "${config:enviromentSettings} scons -j1",
             "problemMatcher": [],
             "group": "build"
         },
         {
             "label": "scons -j4",
             "type": "shell",
-            "command": "c:\\util\\set-dev${config:pythonSuffix}.bat && scons -j4",
+            "command": "${config:enviromentSettings} scons -j4",
             "problemMatcher": [],
             "group": "build"
         },
         {
             "label": "scons clean",
             "type": "shell",
-            "command": "c:\\util\\set-dev${config:pythonSuffix}.bat && scons -c",
+            "command": "${config:enviromentSettings} scons -c",
             "problemMatcher": [],
             "group": "build"
         },
