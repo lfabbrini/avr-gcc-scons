@@ -2,7 +2,7 @@
 ## Bare Metal Arduino Building with Scons
 
 
-This repository aims to create a very clear and easy way to build your Arduino projects (and flash it - see the task.json command examples), with the possibility to control up to the very last building flag.
+This repository aims to create a very clear and easy way to build your Arduino projects (and flash it - see the ```task.json``` command examples), with the possibility to control up to the very last building flag.
 
 If you - as me - have got yourself lost from the plug and play philosophy which hides all the building details (the verbose flag is not even the default one) and you need a way to get the control back, well, this repository could be the answer.
 
@@ -34,7 +34,7 @@ Arduino NANO Every
 ```sh
 $ mode <your_COM> baud=12 dtr=on > nul && mode <your_COM> baud=12 dtr=off > nul && <path_to_avrdude>bin/avrdude -C<path_to_avrdude>etc/avrdude.conf -v -patmega4809 -cjtag2updi -P<your_COM> -b115200 -e -D -Uflash:w:<path_to_avr_gcc_scons>\\build\\appl\\nanoevery\\blink\\blink.hex:i -Ufuse2:w:0x01:m -Ufuse5:w:0xC9:m -Ufuse8:w:0x00:m {upload.extra_files}
 ```
-> *NOTE*: mode <your_COM> baud=12 dtr=on > nul && mode <your_COM> baud=12 dtr=off > nul is used to reset the COM port in order to make Arduino Nano Every to stay in the Bootloader so to receive the commands from ```avrdude```
+> *NOTE*: mode ```<your_COM>``` baud=12 dtr=on > nul && mode ```<your_COM>``` baud=12 dtr=off > nul is used to reset the COM port in order to make Arduino Nano Every to stay in the Bootloader so to receive the commands from ```avrdude```
 
 ### with VSCODE
 Under the hood we call ```avrdude``` with the poper parametrs (be free to experiment with that), see the full command inside ```task.json```
@@ -62,7 +62,8 @@ So there are mainly two ways to use this repository:
 
 Well, until the board uses the avr core in lib/arduino or the avrmega core in lib/arduinomega there is nothing to worry about. The only thing to do is pass to the project the correct variant/<foldername> folder
 ```sh
-(example case)
+def build_program(env):
+    env.IncludeLibrary('arduinomega',arduino_variants_dir='nona4809')
 ```
 To find out what variant/<foldername> folder is used, we can see how is compiled `variant.c` by ```Arduino IDE``` (with verbose option enabled) or by Vscode with Arduino extension (arduino.loglevel="verbose" on settings.json)
 ![Arduino IDE verbose output](/ArduinoIDE.jpg "Arduino IDE Building")

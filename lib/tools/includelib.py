@@ -13,7 +13,7 @@ def exists(env):
 
 def IncludeLibrary(self, *dirs, **options):
     self.SetDefault(_LIBINCLUDED=set())
-    variant_dir = options.get('variant_dir',None)
+    variant_dir = '#build' #unfortunately scons variant_dir has a similar name of lib/arduino/variants...avoid user confusion fixing the former
     self.SetDefault(LIBROOT=self.Dir('%s/lib'%variant_dir))
     self.VariantDir('%s/lib'%variant_dir, '#lib', duplicate=0)
     for lib in dirs:

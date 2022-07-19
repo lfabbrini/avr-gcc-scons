@@ -1,15 +1,14 @@
 import os
 
 def build_program(env):
-    # print(env.Dump())
-    env.IncludeLibrary('arduinomega',variant_dir='#build')
+    env.IncludeLibrary('arduinomega',arduino_variants_dir='nona4809')
     env.Prepend(CPPPATH=['#appl/nanoevery/blink'])
     return env.Program(
         target='blink',
         source=[
             env.Glob("*.c"),
             env.Glob("*.cpp"),
-            env.ArduinoMegaVariant(),
+            env.ArduinoMegaVariant('nona4809')
          ],
          LIBS=[
             env.ArduinoMegaLibrary(),

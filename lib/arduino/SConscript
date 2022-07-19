@@ -1,9 +1,12 @@
-Import('env')
+Import('env','options')
 
 _SOURCES_CORE = env.Glob("core/*.S") + \
                 env.Glob("core/*.c") + \
                 env.Glob("core/*.cpp")
-env.Prepend(CPPPATH=[env.Dir('core').srcnode(),
-                     env.Dir('variants/standard').srcnode()])
+
+arduino_variants_dir = options.get('arduino_variants_dir','')
+if arduino_variants_dir:
+    env.Prepend(CPPPATH=[env.Dir('variants/%s'%arduino_variants_dir).srcnode()])
+env.Prepend(CPPPATH=[env.Dir('core').srcnode()])
 env.ArduinoCore = lambda: _SOURCES_CORE
 env.ArduinoLibrary = lambda: env.Library('arduino_core',_SOURCES_CORE)
