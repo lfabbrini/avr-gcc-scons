@@ -10,7 +10,7 @@ int main (void) {
     /*Set to one the BUILTIN_LED_PIN bit
     **Set digital pin to output mode */
     BUILTIN_LED_PORT.DIRSET = BUILTIN_LED_PIN;
-    _PROTECTED_WRITE(CLKCTRL_MCLKCTRLB, 0x00);
+    _PROTECTED_WRITE(CLKCTRL_MCLKCTRLB, 0x00); //set No division on clock
     while(1) {
         /*Set to one the BUILTIN_LED_PIN
         **Set to HIGH the pin */

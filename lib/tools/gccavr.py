@@ -15,7 +15,7 @@ def generate(env):
         os.path.join('$GCCAVRDIR','lib','gcc','avr','7.3.0','include-fixed'),
         os.path.join('$GCCAVRDIR','avr','include')
     ])
-    env['CCFLAGS'] = SCons.Util.CLVar('-std=gnu11 -pedantic -Wall -Wextra -Wno-unused-parameter -Werror')
+    env['CCFLAGS'] = SCons.Util.CLVar('-std=gnu11 -pedantic -Wall -Wextra -Wno-unused-parameter')
     env['GCCPREFIX'] = 'avr-'
 
 

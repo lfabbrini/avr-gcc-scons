@@ -1,0 +1,21 @@
+#avr-gcc-scons installation Manual
+
+If you don't have any Python version installed on your OS:
+	- Download and install the latest Anaconda Python3 or Python 3.x from www.python.org
+Otherwise:
+	-Make sure Python is in the path:
+ 	 LINUX/UNIX example:
+	 	$ export PYTHONPATH=/usr/local/bin/python3.<your_version>
+
+	 WINDOWS example with Anaconda:
+	    - go to start->Programs->Anaconda(64-bit) and launch Anaconda Prompt (anaconda3)
+	 WINDOWS example without Anaconda:
+	    $ PATH=%PATH%;C:\Python<your_version> and press Enter
+
+
+- Go on a shell
+	$ cd avr-gcc-scons
+	$ pip install -r requirements.txt
+
+
+
