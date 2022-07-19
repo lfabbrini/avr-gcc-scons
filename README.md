@@ -60,12 +60,12 @@ So there are mainly two ways to use this repository:
 
 ## New Boards
 
-Well, until the board uses the avr core in lib/arduino or the avrmega core in lib/arduinomega there is nothing to worry about. The only thing to do is pass to the project the correct variant/<foldername> folder
+Well, until the board uses the avr core in lib/arduino or the avrmega core in lib/arduinomega there is nothing to worry about. The only thing to do is pass to the project the correct variants/<foldername> folder
 ```sh
 def build_program(env):
     env.IncludeLibrary('arduinomega',arduino_variants_dir='nona4809')
 ```
-To find out what variant/<foldername> folder is used, we can see how is compiled `variant.c` by ```Arduino IDE``` (with verbose option enabled) or by Vscode with Arduino extension (arduino.loglevel="verbose" on settings.json)
+To find out what variants/<foldername> folder is used, we can see how is compiled `variant.c` by ```Arduino IDE``` (with verbose option enabled) or by Vscode with Arduino extension (arduino.loglevel="verbose" on settings.json)
 ![Arduino IDE verbose output](/ArduinoIDE.jpg "Arduino IDE Building")
 
 ## Contributing
