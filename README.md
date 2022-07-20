@@ -48,7 +48,7 @@ Under the hood we call ```avrdude``` with the poper parametrs (be free to experi
 
 This generation tool uses [Scons](https://www.scons.org) to generates all the steps useful to build from a simple Arduino sketch to an extended professional project.  Scons is  a very powerful, yet easy, construction tool, fully relaying on Python as configuration language. This means: what Scons does along the building just comes up easily to you from the code (a Python line).
 
-I provide a Scons tool for the ```avr-gcc``` toolchain, and example of project compilation for Arduino Uno, and Arduino Nano Every. For each board there is a bare metal example ```hellworld``` where Arduino core library is not used, next to the classical sketch ```blink``` used by Arduino IDE.
+I provide a Scons tool for the ```avr-gcc``` toolchain, and example of project compilation for Arduino Uno, and Arduino Nano Every. For each board there is a bare metal example ```helloworld``` where Arduino core library is not used, next to the classical sketch ```blink``` used by Arduino IDE.
 
 So there are mainly two ways to use this repository:
 1) ***Curiosity level***: clone the repository, modify, add or adjust the code in one of the folder, lunch ```scons``` command, and you have the executable ready to be flashed in the MCU memory, same smooth and peaceful experience of a plug and play tool

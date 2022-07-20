@@ -3,6 +3,7 @@ dbg/**
 arduino*build.txt
 .sconsign.dblite
 .vscode
+c_cpp_prperties_*.json
 
 # Prerequisites
 *.d
