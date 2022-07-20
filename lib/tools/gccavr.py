@@ -107,4 +107,4 @@ def generate(env):
 
 
 def exists(env):
-    return env.get('_MAPFILE')
+    return env.get('GCCAVRVER','')
