@@ -13,9 +13,9 @@ Import('env')
 abs_path = r"C:\Program Files (x86)\Arduino\hardware\tools\avr"
 gccavrdir = os.environ['GCCAVR'] = abs_path
 
-cc = env.Clone(tools=['gcc','gccavr'],
-               GCCAVRDIR = gccavrdir,
-               LINKFLAGS='-Wl,-gc-sections -fuse-linker-plugin -lm')
+cc = env.Clone(tools=['gccavr'],
+               GCCAVRDIR=gccavrdir)
+cc.Prepend(LINKFLAGS='-Wl,-gc-sections -fuse-linker-plugin -lm')
 cc.Prepend(CCFLAGS='-mmcu=atmega328p '
                    '-Os -fdata-sections -ffunction-sections -flto')
 cc.Prepend(CPPDEFINES={'F_CPU': '16000000L',

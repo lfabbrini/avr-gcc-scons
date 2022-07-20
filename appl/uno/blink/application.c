@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "application.h"
 
-#define MS_DELAY 1000
+#define MS_DELAY 500
 
 void setup()
 {

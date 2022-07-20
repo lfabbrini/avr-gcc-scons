@@ -23,4 +23,4 @@ VARIANTS_SOURCE_DICT = {
     'uno2018': _SOURCES_VARIANT_UNO2018,
 }
 env.ArduinoMegaVariant = lambda x : VARIANTS_SOURCE_DICT[x]
-env.ArduinoMegaLibrary = lambda: env.Library('arduino_core',_SOURCES_CORE + _SOURCES_CORE_API)
+env.ArduinoMegaLibrary = lambda: env.StaticLibrary('arduino_core',_SOURCES_CORE + _SOURCES_CORE_API)

@@ -1,6 +1,6 @@
 #include "application.h"
 #include <Arduino.h>
-#define MS_DELAY 200
+#define MS_DELAY 500
 
 void setup()
 {
