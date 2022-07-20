@@ -37,16 +37,26 @@ def asm_emitter(target, source, env):
             target = src[: -len(asm_suffix)]+'_S'+env.subst("$OBJSUFFIX")
     return (target, source)
 
-def generate(env):
-    # print('AVR GENERATE')
-    env.PrependENVPath('PATH', env.subst(os.path.join('$GCCAVRDIR', 'bin')))
-    #use Unique here because Scons enter here 2 times
-    env.PrependUnique(CPPPATH=[
-        os.path.join('$GCCAVRDIR','lib','gcc','avr','7.3.0','include'),
-        os.path.join('$GCCAVRDIR','lib','gcc','avr','7.3.0','include-fixed'),
+def SetGccAvrVersion(self, version):
+    """This Method is used to set the version of avr gcc toolchain
+    """
+    self['GCCAVRVER'] = version
+    self.PrependUnique(CPPPATH=[
+        os.path.join('$GCCAVRDIR','lib','gcc','avr','$GCCAVRVER','include'),
+        os.path.join('$GCCAVRDIR','lib','gcc','avr','$GCCAVRVER','include-fixed'),
         os.path.join('$GCCAVRDIR','avr','include')
     ])
 
+def SetGccAvrENVPath(self, gccavr_dir):
+    """This Method is used to set the gccavr_dir to the PATH
+    """
+    self.PrependENVPath('PATH', os.path.join(gccavr_dir, 'bin'))
+
+def generate(env):
+    env.AddMethod(SetGccAvrVersion)
+    env.AddMethod(SetGccAvrENVPath)
+
+    env.SetGccAvrVersion('7.3.0') #set default toolchain version
     #load support of defaults builders
     SCons.Tool.gcc.generate(env)
     SCons.Tool.gxx.generate(env)
@@ -97,4 +107,4 @@ def generate(env):
 
 
 def exists(env):
-    return None
+    return env.get('_MAPFILE')

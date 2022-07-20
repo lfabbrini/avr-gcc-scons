@@ -17,10 +17,11 @@ def build_program(env):
 
 Import('env')
 abs_path = r"C:\Program Files (x86)\Arduino\hardware\tools\avr"
-gccavrdir = os.environ['GCCAVR'] = abs_path
+gccavr_dir = os.environ['GCCAVR'] = abs_path
 
-cc = env.Clone(tools=['gccavr'],
-               GCCAVRDIR=gccavrdir)
+cc = env.Clone(tools=['gccavr'])
+cc.SetGccAvrVersion('7.3.0')
+cc.SetGccAvrENVPath(gccavr_dir)
 cc.Prepend(LINKFLAGS='-Wl,-gc-sections -fuse-linker-plugin -lm')
 cc.Prepend(CCFLAGS='-mmcu=atmega328p '
                    '-Os -fdata-sections -ffunction-sections -flto')
