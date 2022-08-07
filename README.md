@@ -6,6 +6,23 @@ This repository aims to create a very clear and easy way to build your Arduino p
 
 If you - as me - have got yourself lost from the plug and play philosophy which hides all the building details (the verbose flag is not even the default one) and you need a way to get the control back, well, this repository could be the answer.
 
+## Dependencies
+**Scons** 
+is an Open Source software construction tool. Think of SCons as an improved, cross-platform substitute for the classic Make utility with integrated functionality similar to autoconf/automake and compiler caches such as ccache. In short, SCons is an easier, more reliable and faster way to build software.
+
+**Python 3** (or 2) is required (Scons works even with Python 2, but who we are to not use Python 3 in a 2022 Project), installed by one of the following
+* [Anaconda] - Anaconda Individual Edition is the world’s most popular Python distribution platform
+* [Python3.x] - Python 3.x (a.k.a. "Python 3000" or "Py3k") is a new version of the language that is incompatible with the 2.x line of releases. The language is mostly the same, but many details, especially how built-in objects like dictionaries and strings work, have changed considerably, and a lot of deprecated features have finally been removed. Also, the standard library has been reorganized in a few prominent places
+
+**Arduino IDE 1.8** / **Arduino IDE 2.0**.
+For Arduino IDE 1.8 you have to install the megaAVR core to use Arduino Nano Every.
+Follow the [QuickStart] Guide.
+Coincisely: 
+* Navigate to Tools > Board > Board Manager.
+* Type in "megaavr" in the search field, and install the Arduino mbed-enabled boards core
+
+See `INSTALL.TXT` inside repository to have further informations
+
 ## Installation
 
 ```sh
@@ -74,15 +91,10 @@ Eventually, whoever wants to improve and contribute to the extension of this too
 
 >That's all folks, happy building!
 
-## Dependencies
 
-Python 3 (or 2) is required (Scons works even with Python 2, but who we are to not use Python 3 in a 2022 Project), installed by one of the following
-* [Anaconda] - Anaconda Individual Edition is the world’s most popular Python distribution platform
-* [Python3.x] - Python 3.x (a.k.a. "Python 3000" or "Py3k") is a new version of the language that is incompatible with the 2.x line of releases. The language is mostly the same, but many details, especially how built-in objects like dictionaries and strings work, have changed considerably, and a lot of deprecated features have finally been removed. Also, the standard library has been reorganized in a few prominent places
-
-See `INSTALL.TXT` inside repository to have further informations
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
 
    [Anaconda]: <https://www.anaconda.com/products/individual>
    [Python3.x]: <https://www.python.org/download/releases/3.0/>
+   [QuickStart]: <https://docs.arduino.cc/hardware/nano-every>
