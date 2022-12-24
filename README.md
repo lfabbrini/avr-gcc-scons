@@ -54,7 +54,7 @@ $ mode <your_COM> baud=12 dtr=on > nul && mode <your_COM> baud=12 dtr=off > nul 
 > *NOTE*: mode ```<your_COM>``` baud=12 dtr=on > nul && mode ```<your_COM>``` baud=12 dtr=off > nul is used to reset the COM port in order to make Arduino Nano Every to stay in the Bootloader so to receive the commands from ```avrdude```
 
 ### with VSCODE
-Under the hood we call ```avrdude``` with the poper parametrs (be free to experiment with that), see the full command inside ```task.json```
+Under the hood we call ```avrdude``` with the proper parametrs (be free to experiment with that), see the full command inside ```task.json```
 ```sh
 1. Open avr-gcc-scon folder whit VSCODE
 2. Type CTRL + SHIFT + B to open the building tasks defined in 'task.json'
